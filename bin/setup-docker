@@ -39,3 +39,9 @@ if ! grep -q "$DOMAIN_HOST" /etc/hosts; then
     echo "Your system password is needed to add an entry to /etc/hosts..."
     echo "127.0.0.1 ::1 $DOMAIN_HOST" | sudo tee -a /etc/hosts
 fi
+
+
+git clone --depth=1 --branch canary https://github.com/graphcommerce-org/graphcommerce.git temp-repo
+mkdir src
+cp -r temp-repo/examples/magento-open-source/* src/
+rm -rf temp-repo

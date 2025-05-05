@@ -1,20 +1,12 @@
-FROM node:18 AS builder
-WORKDIR /app
-COPY package.json yarn.lock ./
-RUN yarn install
-COPY . .
-RUN yarn build
+FROM node:18
 
-FROM node:16
-ARG USER_ID
-ARG GROUP_ID
-RUN groupadd -g ${GROUP_ID} appuser
-RUN useradd -u ${USER_ID} -g appuser -m /app appuser
-COPY --from=builder /app/.next /app/.next
-COPY --from=builder /app/node_modules /app/node_modules
-COPY --from=builder /app/package.json /app/package.json
-RUN chown -R appuser:appuser /app
+
 WORKDIR /app
+
+#RUN yarn install
+#RUN yarn build
+
 EXPOSE 3000
-USER appuser
-CMD ["yarn", "start"]
+USER node
+#CMD ["yarn", "start"]
+CMD ["tail", "-f", "/dev/null"]

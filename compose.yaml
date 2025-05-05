@@ -5,11 +5,8 @@ services:
       build:
         dockerfile: Dockerfile
         context: images
-        args:
-          - USER_ID=${USER_ID}
-          - GROUP_ID=${GROUP_ID}
       volumes:
-        - ./:/app
+        - ./src:/app
       ports:
         - "80"
       extra_hosts:
