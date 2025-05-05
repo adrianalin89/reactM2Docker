@@ -3,6 +3,7 @@ FROM node:18
 
 WORKDIR /app
 
+RUN corepack enable && corepack prepare yarn@4.1.1 --activate
 #RUN yarn install
 #RUN yarn build
 
