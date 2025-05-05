@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -o errexit
+
+if [ "$1" == "--no-dev" ]; then
+  bin/docker-compose --no-dev up -d --remove-orphans "${@:2}"
+  exit $?
+fi
+
+bin/docker-compose up -d --remove-orphans "$@"

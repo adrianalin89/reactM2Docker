@@ -1,0 +1,28 @@
+services:
+    {{project_name}}-app:
+      container_name: {{project_name}}-app
+      restart: unless-stopped
+      build:
+        dockerfile: Dockerfile
+        context: images
+        args:
+          - USER_ID=${USER_ID}
+          - GROUP_ID=${GROUP_ID}
+      volumes:
+        - ./:/app
+      ports:
+        - "80"
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
+      networks:
+        - nginx-proxy
+      environment:
+        - VIRTUAL_HOST=${DOMAIN_HOSTS}
+        - SELF_SIGNED_HOST=${DOMAIN_HOSTS}
+        - VIRTUAL_PORT=3000
+        - LETSENCRYPT_HOST=${DOMAIN_HOSTS}
+        - LETSENCRYPT_EMAIL=${DOMAIN_EMAIL}
+
+networks:
+  nginx-proxy:
+    external: true

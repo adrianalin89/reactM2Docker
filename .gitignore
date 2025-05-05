@@ -1,0 +1,8 @@
+.composer-global
+.idea
+/.idea
+/.idea/
+/.vscode
+.vscode/
+src/
+.env
