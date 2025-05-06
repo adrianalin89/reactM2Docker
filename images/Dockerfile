@@ -1,14 +1,8 @@
 FROM node:18
 
-
 WORKDIR /app
 
-RUN corepack enable && \
-    corepack prepare yarn@4.1.1 --activate && \
-    yarn config set --home enableTelemetry 0
-
-#RUN yarn install
-#RUN yarn build
+RUN corepack enable
 
 EXPOSE 3000
 USER node

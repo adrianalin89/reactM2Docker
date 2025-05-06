@@ -44,6 +44,8 @@ fi
 git clone --depth=1 --branch canary https://github.com/graphcommerce-org/graphcommerce.git temp-repo
 mkdir src
 cp -r temp-repo/examples/magento-open-source/* src/
+cp -r temp-repo/examples/magento-open-source/.* src/
 rm -rf temp-repo
 
 bin/start
+bin/yarn
